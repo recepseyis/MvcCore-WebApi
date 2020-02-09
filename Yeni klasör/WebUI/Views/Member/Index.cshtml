@@ -1,0 +1,50 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Member/_MemberLayout.cshtml";
+}
+    
+<h3 class="text-center">Kullanıcı Bilgileri</h3>
+<div class="row">
+    <div class="col-sm-3">
+        @if (Model.UserPicture != null)
+        {
+            <img class="img-thumbnail" alt="@Model.UserName" style="width:100%;height:100%;" src="@Model.UserPicture" />
+        }
+        else
+        {
+            <img style="width:100%;height:100%;" src="~/UserPicture/User-Default.png" />
+        }
+
+    </div>
+    <div class="col-sm-9">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Kullanıcı Adı</th>
+                <td>@Model.UserName</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>@Model.Email</td>
+            </tr>
+            <tr>
+                <th>Telefon Numarası</th>
+                <td>@Model.PhoneNumber</td>
+            </tr>
+            <tr>
+                <th>Şehir</th>
+                <td>@(Model.City == null ? "Belirtilmemiş" :  Model.City)</td>
+            </tr>
+            <tr>
+                <th>Doğum Tarihi</th>
+                <td>@Model.BirthDay?.ToShortDateString()</td>
+            </tr>
+            <tr>
+                <th>Cinsiyet</th>
+                <td>@Model.Gender</td>
+            </tr>
+        </table>
+    </div>
+    
+</div>
+

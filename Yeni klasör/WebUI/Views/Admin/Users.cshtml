@@ -1,0 +1,41 @@
+﻿@model List<AppUser>
+@{
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2> Üyeler </h2>
+<hr />
+<table class="table table-bordered table-striped">
+    <tr>
+        <td>User Id</td>
+        <td>User Name</td>
+        <td>Email</td>
+        <td>Roller</td>
+        <td>Rol Atama</td>
+        <td>Şifre Yenileme</td>
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="3">Kayıtlı Üye Yok.</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.UserName</td>
+                <td>@item.Email</td>
+                <td user-roles="@item.Id"></td>
+                <td>
+                    <a class="btn btn-success" asp-action="RoleAssign" asp-route-id="@item.Id">Rol Ata</a>
+                </td>
+                <td><a class="btn btn-success" asp-action="ResetUserPassword" asp-route-id="@item.Id">Değiştir</a></td>
+            </tr>
+        }
+    }
+</table>
+
